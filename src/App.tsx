@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import { MyLocation } from "@mui/icons-material";
+import { MyLocation, WbSunny } from "@mui/icons-material"
 
 type WeatherData = {
   cidade: string;
@@ -61,6 +61,7 @@ function App() {
   return (
     <div className="app-container">
       <Typography variant="h4" className="app-title" gutterBottom>
+        <WbSunny className="title-icon" fontSize="large" />
         Previsão do Tempo
       </Typography>
 

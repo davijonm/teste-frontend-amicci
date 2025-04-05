@@ -37,12 +37,39 @@ body {
 
 .app-title {
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 30px !important;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-icon {
+  margin-right: 10px;
+  color: #FFD700;
+  animation: weather-icon-animation 3s infinite ease-in-out;
 }
 
 .weather-icon {
   display: flex;
   justify-content: center;
+}
+
+@keyframes weather-icon-animation {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0);
+  }
+  75% {
+    transform: translateY(5px) rotate(-5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
 }
 
