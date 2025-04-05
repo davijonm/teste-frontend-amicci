@@ -5,7 +5,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #2b2b2b 0%, #818181 100%);
+  background: linear-gradient(135deg, #0e2981e1 0%, #4873ff 100%);
   font-family: 'Roboto', sans-serif;
   color: #fff;
 }
@@ -16,21 +16,26 @@ body {
   padding: 20px;
 }
 
+.btn-location {
+  background: linear-gradient(135deg, #4873ff 20%, #0e2981e1 100%) !important;
+}
+
 .weather-card {
-  background-color: rgba(99, 99, 99, 0.842) !important;
+  background: linear-gradient(135deg, #4873ff 20%, #0e2981e1 90%) !important;
   backdrop-filter: blur(10px);
   border-radius: 10px !important;
   color: #fff !important;
 }
 
 .weather-card-city {
-  font-size: 24px !important;
+  font-size: 28px !important;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px !important;
 }
 
 .weather-card-description {
+  font-size: 18px !important;
   font-weight: bold;
   text-align: center;
 }

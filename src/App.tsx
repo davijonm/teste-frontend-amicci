@@ -69,14 +69,10 @@ function App() {
         <SearchBar onPlaceSelected={handleSearch} />
         <Button
           variant="contained"
+          className="btn-location"
           endIcon={<MyLocation />}
           onClick={handleGetWeatherByLocation}
-          sx={{
-            backgroundColor: "rgba(99, 99, 99, 0.842)",
-            "&:hover": {
-              backgroundColor: "rgba(196, 196, 196, 0.3)",
-            },
-          }}
+          sx={{ }}
         >
           Minha localização
         </Button>
