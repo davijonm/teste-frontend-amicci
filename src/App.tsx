@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { SearchBar } from "./components/SearchBar/SearchBar";
 import { getWeatherByCity } from "./services/weatherService";
 import { getCityFromCoords } from "./services/locationService";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import { MyLocation } from "@mui/icons-material";
 
 type WeatherData = {
   cidade: string;
@@ -59,14 +59,24 @@ function App() {
   }, []);
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Consulta do Clima
+    <div className="app-container">
+      <Typography variant="h4" className="app-title" gutterBottom>
+        Previsão do Tempo
       </Typography>
 
       <Stack spacing={2} direction="row" sx={{ mb: 2 }}>
         <SearchBar onPlaceSelected={handleSearch} />
-        <Button variant="contained" onClick={handleGetWeatherByLocation}>
+        <Button
+          variant="contained"
+          endIcon={<MyLocation />}
+          onClick={handleGetWeatherByLocation}
+          sx={{
+            backgroundColor: "rgba(99, 99, 99, 0.842)",
+            "&:hover": {
+              backgroundColor: "rgba(196, 196, 196, 0.3)",
+            },
+          }}
+        >
           Minha localização
         </Button>
       </Stack>
@@ -74,23 +84,20 @@ function App() {
       {error && <Alert severity="error">{error}</Alert>}
 
       {weather && (
-        <Paper elevation={3} sx={{ mt: 4, p: 3, backgroundColor: "rgb(218, 218, 218)", backdropFilter: "blur(4px)" }}>
-          <Typography variant="h6">
+        <Paper elevation={3} className="weather-card" sx={{ mt: 4, p: 3 }}>
+          <Typography className="weather-card-city">
             {weather.cidade}, {weather.pais}
           </Typography>
-          <Typography>Temperatura: {weather.temperatura}°C</Typography>
-          <Typography>Clima: {weather.descricao}</Typography>
-          <Typography>Umidade: {weather.umidade}%</Typography>
-          <Typography>Vento: {weather.vento} km/h</Typography>
-          <Box mt={2}>
-            <img
-              src={`http://openweathermap.org/img/wn/${weather.icone}@2x.png`}
-              alt={weather.descricao}
-            />
+          <Typography className="weather-card-description">Temperatura: {weather.temperatura}°C</Typography>
+          <Typography className="weather-card-description">Clima: {weather.descricao}</Typography>
+          <Typography className="weather-card-description">Umidade: {weather.umidade}%</Typography>
+          <Typography className="weather-card-description">Vento: {weather.vento} km/h</Typography>
+          <Box mt={2} className="weather-icon">
+            <img src={`http://openweathermap.org/img/wn/${weather.icone}@2x.png`} alt={weather.descricao} />
           </Box>
         </Paper>
       )}
-    </Container>
+    </div>
   );
 }
 
