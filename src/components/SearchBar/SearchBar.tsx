@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import styles from "./SearchBar.module.scss";
 import {
   useLoadScript,
   Autocomplete,
@@ -36,7 +37,22 @@ export function SearchBar({ onPlaceSelected }: Props) {
         variant="outlined"
         fullWidth
         size="small"
-        sx={{ mb: 2 }}
+        sx={{
+          mb: 2,
+          input: { color: "white" },
+          label: { color: "white" },
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "white",
+            },
+            "&:hover fieldset": {
+              borderColor: "white",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "white",
+            },
+          },
+        }}
       />
     </Autocomplete>
   );
