@@ -11,11 +11,12 @@ body {
 
 .app-container {
   width: 100%;
-  max-width: 600px;
-  padding: 20px;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-.btn-location, .weather-card  {
+.btn-location,
+.weather-card {
   background: linear-gradient(135deg, #f0f0f0 20%, #dadadae5 80%) !important;
   color: #181818 !important;
 }
@@ -30,32 +31,34 @@ body {
   border-radius: 12px !important;
   animation: pulseShadow 2s infinite !important;
   transition: box-shadow 0.3s ease-in-out !important;
+  margin-top: 20px;
 }
 
 .weather-card-city {
-  font-size: 28px !important;
+  font-size: 22px !important;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px !important;
 }
 
 .weather-card-description {
-  font-size: 18px !important;
-  font-weight: bold;
+  font-size: 16px !important;
   text-align: center;
+  font-weight: 500;
 }
 
 .app-title {
   color: #fff;
-  margin-bottom: 30px !important;
+  margin-bottom: 20px !important;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .title-icon {
-  margin-right: 10px;
+  margin-right: 8px;
   color: #FFD700;
   animation: weather-icon-animation 3s infinite ease-in-out;
 }
@@ -83,3 +86,28 @@ body {
   }
 }
 
+@media (min-width: 600px) {
+  .app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 32px;
+  }
+
+  .weather-card-city {
+    font-size: 28px !important;
+  }
+
+  .weather-card-description {
+    font-size: 18px !important;
+  }
+}
+
+@media (min-width: 900px) {
+  .app-container {
+    max-width: 700px;
+  }
+
+  .app-title {
+    font-size: 32px;
+  }
+}

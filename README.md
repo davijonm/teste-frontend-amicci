@@ -1,54 +1,93 @@
-# React + TypeScript + Vite
+# Previsão do Tempo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de previsão do tempo desenvolvido com **React**, **TypeScript** e **Vite**. Ele permite que os usuários consultem informações climáticas de uma cidade específica ou do local atual utilizando as APIs do Google Maps e OpenWeather.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Busca de informações climáticas por nome da cidade.
+- Determinação automática da localização do usuário e exibição do clima correspondente.
+- Exibição de dados como temperatura, clima, umidade e velocidade do vento.
+- Layout responsivo e estilizado com **SCSS**.
+- Animações CSS para melhorar a experiência do usuário.
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React** com **TypeScript**
+- **Vite** para desenvolvimento e build
+- **Material-UI** para componentes visuais
+- **Google Maps API** para geolocalização e autocomplete
+- **OpenWeather API** para dados climáticos
+- **SCSS** para estilização
+- **Jest** para testes
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Pré-requisitos
+
+Certifique-se de ter as seguinntes ferramentas instaladas:
+
+- **Node.js** (versão estável mais recente, eu utilizei a 22)
+- **npm** ou **yarn** 
+
+Você precisará tmbém das seguintes chaves de API:
+
+1. **Google Maps API Key**: Para geolocalização e autocomplete.
+2. **OpenWeather API Key**: Para buscar informações climáticas.
+
+Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
+
+1. VITE_GOOGLE_MAPS_API_KEY=sua_google_maps_api_key
+2. VITE_OPENWEATHER_API_KEY=sua_openweather_api_key
+
+Substitua `sua_google_maps_api_key` e `sua_openweather_api_key` pelas suas chaves de API. (Você pode usar a sua ou a minha que enviei em um arquivo zip)
+
+## Como Executar o Projeto
+
+1. Clone este repositório:
+
+   ```bash
+   git clone https://github.com/davijonm/teste-frontend-amicci.git
+   cd teste-frontend-amicci
+
+2. Instale as dependências:
+
+npm install
+
+3. Inicie o servidor de desenvolvimento:
+
+npm run dev
+
+4. Abra o navegador e acesse http://localhost:5173.
+
+## Como executar os testes
+
+npm test
+
+## Estrutura do Projeto
+
+```
+src/
+├── App.tsx                            # componente principal da aplicação
+├── components/                        # componentes
+│   └── SearchBar/                     # componente de barra de busca
+├── services/                          # serviços para integração com APIs
+│   ├── locationService.ts             # serviço para geolocalização
+│   └── weatherService.ts              # serviço para dados climáticos
+│   └── __tests__/                     # pasta com os testes
+│       └── locationService.test.ts    # testes para o serviço de geolocalização
+│       └── weatherService.test.ts     # testes para o serviço de dados climáticos
+├── assets/                            # recursos estáticos
+├── utils/                             # recursos estáticos
+│       └── env.ts                     # env vars globais
+├── App.css                            # estilos globais
+├── main.tsx                           # ponto de entrada da aplicação
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Como Funciona
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Busca por Cidade**: O usuário digita o nome da cidade no campo de busca. A aplicação consulta a API OpenWeather e exibe os dados climáticos.
+2. **Localização Atual**: O usuário clica no botão "Minha localização". A aplicação utiliza a API de geolocalização do navegador para determinar a localização e consulta as APIs do Google Maps e OpenWeather para exibir os dados climáticos.
+3. **Carregamento Inicial**: Ao carregar a página, a aplicação tenta automaticamente buscar o clima com base na localização do usuário.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Melhorias Futuras
+
+- Implementar cache para reduzir chamadas às APIs.
+- Adicionar suporte a múltiplos idiomas.
