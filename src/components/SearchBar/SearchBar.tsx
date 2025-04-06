@@ -26,7 +26,7 @@ export function SearchBar({ onPlaceSelected }: Props) {
     }
   };
 
-  if (!isLoaded) return <p>Carregando autocomplete...</p>;
+  if (!isLoaded) return <p>Carregando serviço...</p>;
 
   return (
     <Autocomplete onPlaceChanged={handlePlaceChanged}>
@@ -35,9 +35,9 @@ export function SearchBar({ onPlaceSelected }: Props) {
         label="Digite o nome da cidade"
         variant="outlined"
         fullWidth
-        size="small"
+        color="white"
         sx={{
-          mb: 2,
+          mb: 1,
           input: { color: "white" },
           label: { color: "white" },
           "& .MuiOutlinedInput-root": {
