@@ -1,5 +1,7 @@
 # Previsão do Tempo
 
+**https://weather-app-omega-ten-92.vercel.app/**
+
 Este é um projeto de previsão do tempo desenvolvido com **React**, **TypeScript** e **Vite**. Ele permite que os usuários consultem informações climáticas de uma cidade específica ou do local atual utilizando as APIs do Google Maps e OpenWeather.
 
 ## Funcionalidades
@@ -19,6 +21,7 @@ Este é um projeto de previsão do tempo desenvolvido com **React**, **TypeScrip
 - **OpenWeather API** para dados climáticos
 - **SCSS** para estilização
 - **Jest** para testes
+- **Vercel** Deploy feito na Vercel
 
 ## Pré-requisitos
 
@@ -71,7 +74,7 @@ src/
 ├── services/                          # serviços para integração com APIs
 │   ├── locationService.ts             # serviço para geolocalização
 │   └── weatherService.ts              # serviço para dados climáticos
-│   └── __tests__/                     # pasta com os testes
+│   └── __tests__/                     # pasta com os testes de serviços
 │       └── locationService.test.ts    # testes para o serviço de geolocalização
 │       └── weatherService.test.ts     # testes para o serviço de dados climáticos
 ├── assets/                            # recursos estáticos
