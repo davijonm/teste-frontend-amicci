@@ -76,7 +76,7 @@ function App() {
         Previsão do Tempo
       </Typography>
 
-      <Stack spacing={2} direction="row" sx={{ mb: 2 }}>
+      <Stack spacing={2} direction={{ xs: "column", sm: "row" }} sx={{ mb: 2 }}>
         <SearchBar onPlaceSelected={handleSearch} />
         <Button
           variant="contained"
