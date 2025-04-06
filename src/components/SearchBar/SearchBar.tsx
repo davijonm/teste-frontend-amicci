@@ -32,10 +32,6 @@ export function SearchBar({ onPlaceSelected }: Props) {
     <Autocomplete onPlaceChanged={handlePlaceChanged}>
       <TextField
         inputRef={inputRef}
-        label="Digite o nome da cidade"
-        variant="outlined"
-        fullWidth
-        color="white"
         sx={{
           mb: 1,
           input: { color: "white" },
