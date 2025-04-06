@@ -1,5 +1,7 @@
+import { getEnv } from "../utils/env";
+
 export const getCityFromCoords = async (lat: number, lng: number): Promise<string> => {
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const apiKey = getEnv().VITE_GOOGLE_MAPS_API_KEY;
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
 
   const response = await fetch(url);
