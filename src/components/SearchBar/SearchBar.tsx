@@ -4,6 +4,7 @@ import {
   Autocomplete,
 } from "@react-google-maps/api";
 import TextField from "@mui/material/TextField";
+import { getEnv } from "../../utils/env";
 
 type Props = {
   onPlaceSelected: (place: string) => void;
@@ -15,7 +16,7 @@ export function SearchBar({ onPlaceSelected }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: getEnv().VITE_GOOGLE_MAPS_API_KEY,
     libraries: libraries as ("places")[],
   });
 
