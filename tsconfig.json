@@ -3,5 +3,18 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "types": [
+      "vite/client", 
+      "jest", 
+      "@types/node", 
+      "@testing-library/jest-dom"
+    ],
+    "esModuleInterop": true
+  }
 }
