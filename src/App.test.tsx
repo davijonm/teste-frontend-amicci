@@ -19,7 +19,7 @@ vi.mock("./services/locationService", () => ({
 }));
 
 vi.mock("./components/SearchBar/SearchBar", () => ({
-  SearchBar: ({ onPlaceSelected }: any) => (
+  SearchBar: ({ onPlaceSelected }: { onPlaceSelected: (place: string) => void }) => (
     <button onClick={() => onPlaceSelected("São Paulo")}>Buscar SP</button>
   ),
 }));
@@ -49,7 +49,7 @@ describe("App", () => {
 
   it("deve mostrar erro se cidade não for encontrada", async () => {
     const { getWeatherByCity } = await import("./services/weatherService");
-    (getWeatherByCity as any).mockRejectedValueOnce(new Error("Erro"));
+    (getWeatherByCity as jest.Mock).mockRejectedValueOnce(new Error("Erro"));
 
     render(<App />);
 
