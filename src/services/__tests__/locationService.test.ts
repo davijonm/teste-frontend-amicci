@@ -1,65 +1,90 @@
-import { getCityFromCoords } from '../locationService';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { getCityFromCoords } from "../locationService";
 
-global.fetch = jest.fn();
-
-const mockFetch = fetch as jest.Mock;
-
-jest.mock("../../utils/env", () => ({
-  getEnv: () => ({
-    VITE_GOOGLE_MAPS_API_KEY: "fake-api-key",
-  }),
+vi.mock("../utils/env", () => ({
+  getEnv: () => ({ VITE_GOOGLE_MAPS_API_KEY: "fake-api-key" }),
 }));
 
-
 describe('getCityFromCoords', () => {
+  const originalFetch = global.fetch;
+
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('deve retornar o nome da cidade quando os dados forem válidos', async () => {
-    mockFetch.mockResolvedValueOnce({
-      json: async () => ({
-        status: "OK",
-        results: [
-          {
-            types: ["locality"],
-            address_components: [
-              {
-                types: ["locality"],
-                long_name: "São Paulo",
-              },
-            ],
-          },
-        ],
-      }),
-    });
+    const mockJson = {
+      status: "OK",
+      results: [
+        {
+          types: ["locality"],
+          address_components: [
+            {
+              long_name: "São Paulo",
+              types: ["locality"],
+            },
+          ],
+        },
+      ],
+    };
 
-    const cidade = await getCityFromCoords(-23.55, -46.63);
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(mockJson),
+      } as Response)
+    );
+
+    const cidade = await getCityFromCoords(-23.5505, -46.6333);
     expect(cidade).toBe("São Paulo");
   });
 
   it('deve retornar "Cidade não encontrada" se nenhum componente for encontrado', async () => {
-    mockFetch.mockResolvedValueOnce({
-      json: async () => ({
-        status: "OK",
-        results: [],
-      }),
-    });
+    const mockJson = {
+      status: "OK",
+      results: [
+        {
+          types: ["locality"],
+          address_components: [],
+        },
+      ],
+    };
 
-    const cidade = await getCityFromCoords(0, 0);
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(mockJson),
+      } as Response)
+    );
+
+    const cidade = await getCityFromCoords(-23.5505, -46.6333);
     expect(cidade).toBe("Cidade não encontrada");
   });
 
-  it('deve lançar erro se o status for diferente de OK', async () => {
-    mockFetch.mockResolvedValueOnce({
-      json: async () => ({
-        status: "ZERO_RESULTS",
-        results: [],
-      }),
-    });
+  it("lança erro se a resposta não for OK", async () => {
+    const mockJson = {
+      status: "ZERO_RESULTS",
+      results: [],
+    };
 
-    await expect(getCityFromCoords(0, 0)).rejects.toThrow(
+    global.fetch = vi.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(mockJson),
+      } as Response)
+    );
+
+    await expect(getCityFromCoords(-23.5505, -46.6333)).rejects.toThrow(
       "Erro ao buscar cidade pela geolocalização."
     );
+  });
+
+  it("lança erro se a requisição falhar", async () => {
+    global.fetch = vi.fn(() => Promise.reject(new Error("Network error")));
+
+    await expect(getCityFromCoords(-23.5505, -46.6333)).rejects.toThrow(
+      "Network error"
+    );
+  });
+
+  afterAll(() => {
+    global.fetch = originalFetch;
   });
 });
