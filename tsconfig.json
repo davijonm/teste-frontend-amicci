@@ -15,5 +15,6 @@
       "@testing-library/jest-dom"
     ],
     "esModuleInterop": true
-  }
+  },
+  "exclude": ["node_modules", "vitest.config.ts", "**/*.test.ts", "**/*.test.tsx"]
 }
