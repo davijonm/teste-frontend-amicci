@@ -20,7 +20,7 @@ Este é um projeto de previsão do tempo desenvolvido com **React**, **TypeScrip
 - **Google Maps API** para geolocalização e autocomplete
 - **OpenWeather API** para dados climáticos
 - **SCSS** para estilização
-- **Jest** para testes
+- **Vitest** para testes
 - **Vercel** Deploy feito na Vercel
 
 ## Pré-requisitos
@@ -62,22 +62,23 @@ npm run dev
 
 ## Como executar os testes
 
-npm test
+npm run test
 
 ## Estrutura do Projeto
 
 ```
 src/
 ├── App.tsx                            # componente principal da aplicação
+├── App.test.tsx                       # teste para o componente principal da aplicação
 ├── components/                        # componentes
-│   └── SearchBar/                     # componente de barra de busca
+│   └── SearchBar.tsx                  # componente de barra de busca
+│   └── SearchBar.test.tsx             # teste para componente de barra de busca
 ├── services/                          # serviços para integração com APIs
 │   ├── locationService.ts             # serviço para geolocalização
 │   └── weatherService.ts              # serviço para dados climáticos
 │   └── __tests__/                     # pasta com os testes de serviços
 │       └── locationService.test.ts    # testes para o serviço de geolocalização
 │       └── weatherService.test.ts     # testes para o serviço de dados climáticos
-├── assets/                            # recursos estáticos
 ├── utils/                             # recursos estáticos
 │       └── env.ts                     # env vars globais
 ├── App.css                            # estilos globais
